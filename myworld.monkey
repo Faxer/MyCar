@@ -9,7 +9,7 @@ End Class
 Class Course
 	Field sections:= New List <Section>
 	
-	Method Render:void()
+	Method Render:Void()
 		For Local sec:= Eachin sections
 		sec.Draw
 		Next  
@@ -19,25 +19,62 @@ Class Course
 	Method AddSection:Void (points:Float[])
 		sections.AddLast(New Section(points))
 	
-	End method
+	End Method
 
 End Class 
 
-Class Section
+Class Polly
 
 	Field points:Float[] 
+	Field x:Float
+	Field y:Float
+	
 	Method Draw:Void()
+		PushMatrix()
+		
+		Translate (x,y)
+		
 		SetColor 0,0,0
 		'DrawPoly points
-		For Local i:Int = 0 Until points.Length()-2 Step 2 
+		Local last:Int = points.Length()-2 	
+		For Local i:Int = 0 Until last Step 2 
 		DrawLine points[i],points[i+1],points[i+2],points[i+3]
 		Next 
+		DrawLine points[0],points[1],points[last],points[last+1]
 		
+		PopMatrix()
+
 	End Method
+	
+
+	Method New(points:Float[])
+		Self.points=points
+	
+	End Method
+	
+End Class	
+
+
+Class Section Extends Polly
 	
 	Method New(points:Float[])
-	Self.points=points
+		
+		Super.New(points)
 	
 	End Method
 	
+	
 End Class
+	
+	
+Class Car Extends Polly
+	
+	Method New(points:Float[])
+		
+		Super.New(points)
+	
+	End Method
+
+	
+End Class 
+	
