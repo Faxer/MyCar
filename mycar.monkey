@@ -14,13 +14,16 @@ Class MyCar Extends App
 		SetUpdateRate 60
 		camera = New Camera
 		course = New Course
+		
 
-		Local carpoints:Float[]=[-10.0,-20,10,-20,10,20,-10,20]
+		Local carpoints:Float[]=[-20.0,-15,-15,-15,-5,-5,0,-10,5,-10,10,-5,10,2,15,-5,20,0,15,5,10,2,10,5,5,10,0,10,-5,5,-15,15,-20,15,-20,5,-10,5,-20,0,-10,-5,-20,-5]
 		
 		thecar = New Car (carpoints)
 		
-		thecar.x = 200
-		thecar.y = 400
+		thecar.rot = 40
+		thecar.speed = 0.5
+		thecar.x = 320
+		thecar.y = 300
 		
 		Local points:Float[]=[40.0,40,200,90,180,200,60,120]
 		
@@ -31,7 +34,16 @@ Class MyCar Extends App
 	
 	Method OnUpdate:Int()
 		
-		thecar.x += 0.1
+		
+		If KeyDown(KEY_LEFT) thecar.rot += 2
+		If KeyDown(KEY_RIGHT) thecar.rot -= 2	
+		If KeyDown(KEY_UP) thecar.speed += 0.1
+		If KeyDown(KEY_DOWN) thecar.speed -= 0.1
+		If thecar.speed < 0 thecar.speed = 0
+		thecar.Update
+		
+		
+		
 		
 		Return 0
 		

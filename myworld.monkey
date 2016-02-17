@@ -28,18 +28,22 @@ Class Polly
 	Field points:Float[] 
 	Field x:Float
 	Field y:Float
+	Field rot:Float 
 	
 	Method Draw:Void()
 		PushMatrix()
 		
+
 		Translate (x,y)
+		Rotate (rot)		
 		
 		SetColor 0,0,0
 		'DrawPoly points
 		Local last:Int = points.Length()-2 	
 		For Local i:Int = 0 Until last Step 2 
-		DrawLine points[i],points[i+1],points[i+2],points[i+3]
+			DrawLine points[i],points[i+1],points[i+2],points[i+3]
 		Next 
+		
 		DrawLine points[0],points[1],points[last],points[last+1]
 		
 		PopMatrix()
@@ -69,12 +73,22 @@ End Class
 	
 Class Car Extends Polly
 	
+	Field speed:Float
+	
 	Method New(points:Float[])
 		
 		Super.New(points)
 	
 	End Method
 
+	Method Update:Void()
+		Local mx:Float = Cos(rot)*speed
+		Local my:Float = -Sin(rot)*speed
+		x += mx
+		y += my
+	
+	End Method 
+	
 	
 End Class 
 	
