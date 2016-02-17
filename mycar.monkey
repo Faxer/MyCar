@@ -9,6 +9,7 @@ Class MyCar Extends App
 	Field camera:Camera
 	Field course:Course
 	Field thecar:Car
+	Field speedrumble:Float 
 	
 	Method OnCreate:Int()
 		SetUpdateRate 60
@@ -25,6 +26,8 @@ Class MyCar Extends App
 		thecar.x = 320
 		thecar.y = 300
 		
+	
+		
 		Local points:Float[]=[40.0,40,200,90,180,200,60,120]
 		
 		course.AddSection(points)
@@ -33,7 +36,7 @@ Class MyCar Extends App
 	End
 	
 	Method OnUpdate:Int()
-		
+		speedrumble = thecar.speed
 		
 		If KeyDown(KEY_LEFT) thecar.rot += 2
 		If KeyDown(KEY_RIGHT) thecar.rot -= 2	
@@ -42,7 +45,7 @@ Class MyCar Extends App
 		If thecar.speed < 0 thecar.speed = 0
 		thecar.Update
 		
-		
+		thecar.scale = 1 + Cos (Millisecs()*speedrumble)*0.5
 		
 		
 		Return 0

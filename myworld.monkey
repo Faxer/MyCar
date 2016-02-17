@@ -29,13 +29,16 @@ Class Polly
 	Field x:Float
 	Field y:Float
 	Field rot:Float 
+	Field scale:Float = 1
+
 	
 	Method Draw:Void()
 		PushMatrix()
 		
 
 		Translate (x,y)
-		Rotate (rot)		
+		Rotate (rot)	
+		Scale (scale,scale)
 		
 		SetColor 0,0,0
 		'DrawPoly points
