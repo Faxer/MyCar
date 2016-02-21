@@ -26,9 +26,14 @@ Class MyCar Extends App
 		thecar.x = 320
 		thecar.y = 300
 		
+		course.firstx = 40
+		course.secondx = 500
+		course.firsty = 40
+		course.secondy = 400
+		
 	
 		
-		Local points:Float[]=[40.0,40,200,90,180,200,60,120]
+		Local points:Float[]=[40.0,40,500,40,500,400,40,400]
 		
 		course.AddSection(points)
 		
@@ -43,6 +48,15 @@ Class MyCar Extends App
 		If KeyDown(KEY_UP) thecar.speed += 0.1
 		If KeyDown(KEY_DOWN) thecar.speed -= 0.1
 		If thecar.speed < 0 thecar.speed = 0
+		
+		If speedrumble > 1 speedrumble = 1
+		If thecar.speed > 1 speedrumble = 1
+		
+		If thecar.x < course.firstx Print "firstx overlap"
+		If thecar.x > course.secondx Print "secondx overlap"
+		If thecar.y < course.firsty Print "firsty overlap"
+		If thecar.y > course.secondy Print "secondy overlap"
+		
 		thecar.Update
 		
 		thecar.scale = 1 + Cos (Millisecs()*speedrumble)*0.5

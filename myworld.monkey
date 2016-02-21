@@ -8,6 +8,11 @@ End Class
 
 Class Course
 	Field sections:= New List <Section>
+	Field firstx:Float
+	Field secondx:Float
+	Field firsty:Float
+	Field secondy:float
+	
 	
 	Method Render:Void()
 		For Local sec:= Eachin sections
@@ -16,6 +21,7 @@ Class Course
 	
 	End Method 
 	
+
 	Method AddSection:Void (points:Float[])
 		sections.AddLast(New Section(points))
 	
